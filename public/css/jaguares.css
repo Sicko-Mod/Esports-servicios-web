@@ -1,0 +1,898 @@
+/**
+ * Jaguares E-Sports UAM - hoja de estilo del sitio público.
+ *
+ * Paleta institucional de la UAM sobre base oscura de esports. Los cuatro
+ * colores institucionales están abajo; si Comunicación entrega un manual
+ * de marca con otros códigos, se cambian acá y el sitio entero se acomoda.
+ *
+ * Portado del tema hijo de Astra: se quitaron los selectores de Astra y
+ * los parches para WordPress, las clases jg-* se mantienen.
+ */
+
+:root {
+	/* Institucionales UAM */
+	--jg-teal:      #0099A8;
+	--jg-cian:      #00BCD4;
+	--jg-profundo:  #0B545B;
+	--jg-noche:     #212331;
+
+	/* Base oscura */
+	--jg-negro:     #090C0F;
+	--jg-carbon:    #10161B;
+	--jg-panel:     #151E24;
+	--jg-panel-alto:#1B262E;
+
+	/* Texto */
+	--jg-texto:     #E9F1F3;
+	--jg-tenue:     #90A4AE;
+	--jg-blanco:    #FFFFFF;
+
+	/* Líneas y sombras */
+	--jg-linea:     rgba(0, 188, 212, 0.16);
+	--jg-linea-viva:rgba(0, 188, 212, 0.55);
+	--jg-sombra:    0 18px 40px rgba(0, 0, 0, 0.45);
+
+	--jg-display:   'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+	--jg-texto-ff:  'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+	--jg-ancho:     68rem;
+}
+
+/* -------------------------------------------------------------------------
+ * 1. Base
+ * ---------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	background-color: var(--jg-negro);
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--jg-negro);
+	background-image:
+		radial-gradient(60rem 40rem at 78% -10%, rgba(0, 153, 168, 0.16), transparent 60%),
+		radial-gradient(45rem 35rem at 0% 8%, rgba(0, 188, 212, 0.10), transparent 60%);
+	background-attachment: fixed;
+	color: var(--jg-texto);
+	font-family: var(--jg-texto-ff);
+	font-size: 1rem;
+	line-height: 1.6;
+	overflow-x: hidden;
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+h1, h2, h3, h4 {
+	margin: 0 0 0.6rem;
+	font-family: var(--jg-display);
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	text-transform: uppercase;
+	color: var(--jg-blanco);
+}
+
+.salto {
+	position: absolute;
+	left: -999px;
+	top: 0;
+	padding: 0.6rem 1rem;
+	background: var(--jg-cian);
+	color: #05161A;
+	z-index: 100;
+}
+
+.salto:focus {
+	left: 0;
+}
+
+.contenedor {
+	width: 100%;
+	max-width: var(--jg-ancho);
+	margin: 0 auto;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+.contenido {
+	padding-top: 3rem;
+	padding-bottom: 4.5rem;
+}
+
+.pagina-titulo {
+	position: relative;
+	margin-bottom: 1.5rem;
+	padding-top: 1.4rem;
+	font-size: clamp(2.4rem, 6vw, 4rem);
+	line-height: 0.98;
+}
+
+.pagina-titulo::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3.5rem;
+	height: 5px;
+	background: var(--jg-cian);
+	transform: skewX(-24deg);
+}
+
+/* -------------------------------------------------------------------------
+ * 2. Texto del contenido
+ * ---------------------------------------------------------------------- */
+
+.contenido p,
+.contenido li {
+	font-size: 1.02rem;
+	line-height: 1.75;
+	color: #D3E1E6;
+}
+
+.contenido a {
+	color: var(--jg-cian);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
+}
+
+.contenido a:hover,
+.contenido a:focus {
+	color: var(--jg-blanco);
+	background: rgba(0, 188, 212, 0.14);
+}
+
+.contenido h2 {
+	margin-top: 2.6rem;
+	padding-bottom: 0.5rem;
+	font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+	border-bottom: 1px solid var(--jg-linea);
+}
+
+.contenido h3 {
+	margin-top: 1.8rem;
+	font-size: 1.35rem;
+}
+
+.contenido ul:not([class]) li::marker,
+.contenido ol:not([class]) li::marker {
+	color: var(--jg-cian);
+}
+
+.contenido ul:not([class]) li,
+.contenido ol:not([class]) li {
+	margin-bottom: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------
+ * 3. Cabecera y navegación
+ * ---------------------------------------------------------------------- */
+
+.sitio-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	background: rgba(9, 12, 15, 0.92);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid var(--jg-linea);
+}
+
+.sitio-header__interior {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	max-width: var(--jg-ancho);
+	margin: 0 auto;
+	padding: 0.85rem 1.5rem;
+}
+
+.sitio-marca {
+	font-family: var(--jg-display);
+	font-size: 1.5rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--jg-blanco);
+	text-decoration: none;
+}
+
+.sitio-marca::before {
+	content: '';
+	display: inline-block;
+	width: 0.55rem;
+	height: 1.1rem;
+	margin-right: 0.6rem;
+	vertical-align: -0.1rem;
+	background: linear-gradient(180deg, var(--jg-cian), var(--jg-teal));
+	transform: skewX(-20deg);
+}
+
+.menu ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.2rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.menu a {
+	position: relative;
+	display: block;
+	padding: 0.5rem 0.9rem;
+	font-family: var(--jg-display);
+	font-size: 1.06rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--jg-texto);
+	text-decoration: none;
+}
+
+.menu a::after {
+	content: '';
+	position: absolute;
+	left: 0.9rem;
+	right: 0.9rem;
+	bottom: 0.2rem;
+	height: 2px;
+	background: var(--jg-cian);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.18s ease;
+}
+
+.menu a:hover::after,
+.menu a.activo::after {
+	transform: scaleX(1);
+}
+
+.menu a.activo {
+	color: var(--jg-cian);
+}
+
+.menu-boton {
+	display: none;
+	padding: 0.45rem 0.9rem;
+	background: transparent;
+	color: var(--jg-cian);
+	border: 1px solid var(--jg-linea-viva);
+	font-family: var(--jg-display);
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+ * 4. Portada
+ * ---------------------------------------------------------------------- */
+
+.jg-hero {
+	position: relative;
+	padding: clamp(4rem, 11vw, 8rem) 0 clamp(4rem, 9vw, 6.5rem);
+	background:
+		linear-gradient(115deg, rgba(11, 84, 91, 0.75) 0%, rgba(9, 12, 15, 0.2) 55%),
+		linear-gradient(0deg, var(--jg-negro), rgba(9, 12, 15, 0.4));
+	border-bottom: 1px solid var(--jg-linea);
+	overflow: hidden;
+}
+
+.jg-hero::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image: repeating-linear-gradient(115deg, rgba(0, 188, 212, 0.07) 0 2px, transparent 2px 22px);
+	opacity: 0.8;
+	pointer-events: none;
+}
+
+.jg-hero__interior {
+	position: relative;
+	max-width: var(--jg-ancho);
+	margin: 0 auto;
+	padding: 0 1.5rem;
+}
+
+.jg-hero__interior > * {
+	max-width: 44rem;
+}
+
+.jg-hero__kicker {
+	display: inline-block;
+	margin: 0 0 1.1rem;
+	padding: 0.35rem 0.85rem;
+	border: 1px solid var(--jg-linea-viva);
+	color: var(--jg-cian);
+	font-family: var(--jg-display);
+	font-size: 0.95rem;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+}
+
+.jg-hero__titulo {
+	margin: 0 0 1.2rem;
+	font-size: clamp(2.9rem, 9vw, 5.6rem);
+	line-height: 0.92;
+}
+
+.jg-hero__titulo em {
+	font-style: normal;
+	color: var(--jg-cian);
+}
+
+.jg-hero__bajada {
+	margin: 0 0 2rem;
+	font-size: 1.12rem;
+	line-height: 1.65;
+	color: #C9DBE1;
+}
+
+.jg-acciones {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.85rem;
+	margin: 1.2rem 0;
+}
+
+.jg-hero .jg-acciones {
+	margin: 0;
+}
+
+/* -------------------------------------------------------------------------
+ * 5. Botones
+ * ---------------------------------------------------------------------- */
+
+.jg-boton,
+.contenido a.jg-boton {
+	display: inline-block;
+	padding: 0.85rem 1.7rem;
+	background: var(--jg-cian);
+	color: #05161A;
+	font-family: var(--jg-display);
+	font-size: 1.05rem;
+	font-weight: 700;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+	text-decoration: none;
+	border: 1px solid var(--jg-cian);
+	border-radius: 0;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.jg-boton:hover,
+.contenido a.jg-boton:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 24px rgba(0, 188, 212, 0.28);
+	background: var(--jg-blanco);
+	border-color: var(--jg-blanco);
+	color: #05161A;
+}
+
+.jg-boton--linea,
+.contenido a.jg-boton--linea {
+	background: transparent;
+	color: var(--jg-cian);
+	border-color: var(--jg-linea-viva);
+}
+
+.jg-boton--linea:hover,
+.contenido a.jg-boton--linea:hover {
+	background: rgba(0, 188, 212, 0.12);
+	color: var(--jg-blanco);
+	border-color: var(--jg-cian);
+	box-shadow: none;
+}
+
+/* -------------------------------------------------------------------------
+ * 6. Tarjetas y franja de datos de la portada
+ * ---------------------------------------------------------------------- */
+
+.jg-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1rem;
+	margin: 2rem 0 3rem;
+	padding: 0;
+	list-style: none;
+}
+
+.jg-card {
+	margin: 0;
+	padding: 1.6rem 1.4rem;
+	background: var(--jg-panel);
+	border: 1px solid var(--jg-linea);
+	border-top: 3px solid var(--jg-teal);
+	transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.jg-card:hover {
+	border-color: var(--jg-linea-viva);
+	border-top-color: var(--jg-cian);
+	transform: translateY(-3px);
+}
+
+.contenido .jg-card h3 {
+	margin: 0 0 0.6rem;
+	font-size: 1.25rem;
+	color: var(--jg-blanco);
+}
+
+.contenido .jg-card p {
+	margin: 0 0 0.9rem;
+	font-size: 0.97rem;
+	line-height: 1.6;
+	color: var(--jg-tenue);
+}
+
+.contenido .jg-card a {
+	font-family: var(--jg-display);
+	font-weight: 600;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: var(--jg-cian);
+}
+
+.jg-datos {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+	gap: 1px;
+	margin: 0 0 2.5rem;
+	padding: 0;
+	list-style: none;
+	background: var(--jg-linea);
+	border: 1px solid var(--jg-linea);
+}
+
+.jg-datos li {
+	margin: 0;
+	padding: 1.4rem 1.2rem;
+	background: var(--jg-carbon);
+	text-align: center;
+}
+
+.jg-datos strong {
+	display: block;
+	font-family: var(--jg-display);
+	font-size: 2.4rem;
+	line-height: 1;
+	color: var(--jg-cian);
+}
+
+.jg-datos span {
+	display: block;
+	margin-top: 0.4rem;
+	font-size: 0.85rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--jg-tenue);
+}
+
+/* -------------------------------------------------------------------------
+ * 7. Juegos
+ * ---------------------------------------------------------------------- */
+
+.jg-juegos {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+	gap: 1rem;
+	margin: 1.8rem 0 2.5rem;
+	padding: 0;
+	list-style: none;
+}
+
+.jg-juego {
+	position: relative;
+	margin: 0;
+	padding: 1.5rem 1.4rem 1.3rem;
+	background: linear-gradient(160deg, var(--jg-panel-alto), var(--jg-panel));
+	border: 1px solid var(--jg-linea);
+	overflow: hidden;
+	transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.jg-juego::after {
+	content: '';
+	position: absolute;
+	top: -3rem;
+	right: -3rem;
+	width: 7rem;
+	height: 7rem;
+	background: linear-gradient(180deg, var(--jg-teal), transparent);
+	opacity: 0.35;
+	transform: skewX(-22deg);
+	pointer-events: none;
+}
+
+.jg-juego:hover {
+	border-color: var(--jg-linea-viva);
+	transform: translateY(-3px);
+}
+
+.contenido .jg-juego__nombre {
+	margin: 0 0 0.9rem;
+	font-size: 1.5rem;
+	line-height: 1.1;
+}
+
+.contenido .jg-juego__nombre a {
+	color: var(--jg-blanco);
+	text-decoration: none;
+}
+
+.contenido .jg-juego__nombre a:hover {
+	color: var(--jg-cian);
+	background: none;
+}
+
+.jg-juego__datos {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0.35rem 0.9rem;
+	margin: 0;
+	font-size: 0.94rem;
+}
+
+.jg-juego__datos dt {
+	font-family: var(--jg-display);
+	font-weight: 600;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+	color: var(--jg-tenue);
+}
+
+.jg-juego__datos dd {
+	margin: 0;
+	color: var(--jg-texto);
+}
+
+.jg-ficha {
+	margin: 1.5rem 0;
+	padding: 1.3rem 1.4rem;
+	background: linear-gradient(160deg, var(--jg-panel-alto), var(--jg-panel));
+	border: 1px solid var(--jg-linea);
+	border-left: 4px solid var(--jg-cian);
+}
+
+/* -------------------------------------------------------------------------
+ * 8. Roster
+ * ---------------------------------------------------------------------- */
+
+.jg-roster {
+	margin: 2rem 0 1rem;
+}
+
+.jg-nivel {
+	margin-bottom: 2.2rem;
+	padding: 1.4rem 1.4rem 1.2rem;
+	background: var(--jg-carbon);
+	border: 1px solid var(--jg-linea);
+	border-left: 4px solid var(--jg-profundo);
+}
+
+.contenido .jg-nivel__titulo {
+	margin: 0;
+	font-size: 1.4rem;
+}
+
+.jg-nivel__nota {
+	margin: 0.2rem 0 1rem;
+	font-size: 0.85rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--jg-tenue);
+}
+
+.jg-nivel__lista {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.jg-integrante {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 0.6rem 1rem;
+	background: var(--jg-panel);
+	border: 1px solid var(--jg-linea);
+}
+
+.jg-integrante__tag {
+	font-family: var(--jg-display);
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: var(--jg-texto);
+}
+
+.jg-integrante__nombre {
+	font-size: 0.82rem;
+	color: var(--jg-tenue);
+}
+
+/* Tier 1 manda: más grande, con el acento institucional encendido. */
+
+.jg-nivel--tier-1 {
+	border-left-color: var(--jg-cian);
+	box-shadow: inset 0 0 0 1px rgba(0, 188, 212, 0.08), 0 0 34px rgba(0, 188, 212, 0.06);
+}
+
+.contenido .jg-nivel--tier-1 .jg-nivel__titulo {
+	font-size: 1.9rem;
+	color: var(--jg-cian);
+}
+
+.jg-nivel--tier-1 .jg-integrante {
+	padding: 0.9rem 1.3rem;
+	border-color: var(--jg-linea-viva);
+}
+
+.jg-nivel--tier-1 .jg-integrante__tag {
+	font-size: 1.25rem;
+}
+
+.jg-nivel--tier-2 {
+	border-left-color: var(--jg-teal);
+}
+
+.jg-nivel--tier-2 .jg-integrante__tag {
+	font-size: 1.05rem;
+}
+
+.contenido .jg-nivel--miembro .jg-nivel__titulo {
+	font-size: 1.15rem;
+	color: var(--jg-tenue);
+}
+
+.jg-nivel--miembro .jg-integrante {
+	padding: 0.35rem 0.75rem;
+	background: transparent;
+}
+
+.jg-nivel--miembro .jg-integrante__tag {
+	font-size: 0.92rem;
+	font-family: var(--jg-texto-ff);
+	color: var(--jg-tenue);
+}
+
+/* -------------------------------------------------------------------------
+ * 9. Torneos
+ * ---------------------------------------------------------------------- */
+
+.jg-torneos {
+	margin: 1.8rem 0 2.5rem;
+	padding: 0;
+	list-style: none;
+}
+
+.jg-torneo {
+	display: flex;
+	gap: 1.3rem;
+	margin: 0 0 1rem;
+	padding: 1.3rem 1.4rem;
+	background: var(--jg-panel);
+	border: 1px solid var(--jg-linea);
+	transition: border-color 0.18s ease;
+}
+
+.jg-torneo:hover {
+	border-color: var(--jg-linea-viva);
+}
+
+.jg-torneo__fecha {
+	flex: 0 0 4.6rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 4.6rem;
+	background: linear-gradient(160deg, var(--jg-teal), var(--jg-profundo));
+	color: var(--jg-blanco);
+}
+
+.jg-torneo__dia {
+	font-family: var(--jg-display);
+	font-size: 1.9rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.jg-torneo__mes {
+	font-size: 0.75rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.jg-torneo__cuerpo {
+	flex: 1 1 auto;
+}
+
+.contenido .jg-torneo__nombre {
+	margin: 0 0 0.3rem;
+	font-size: 1.35rem;
+}
+
+.jg-torneo__meta {
+	margin: 0 0 0.7rem;
+	font-size: 0.86rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--jg-tenue);
+}
+
+.contenido .jg-torneo__texto p,
+.jg-torneo__texto {
+	margin: 0 0 0.8rem;
+	font-size: 0.97rem;
+	color: #C9DBE1;
+}
+
+/* -------------------------------------------------------------------------
+ * 10. Avisos vacíos
+ * ---------------------------------------------------------------------- */
+
+.jg-vacio,
+.contenido .jg-vacio {
+	margin: 1.5rem 0;
+	padding: 1.1rem 1.3rem;
+	background: rgba(0, 153, 168, 0.07);
+	border-left: 3px solid var(--jg-teal);
+	color: var(--jg-tenue);
+	font-size: 0.97rem;
+}
+
+/* -------------------------------------------------------------------------
+ * 11. Pie de página
+ * ---------------------------------------------------------------------- */
+
+.sitio-pie {
+	flex-shrink: 0;
+	background: var(--jg-carbon);
+	border-top: 1px solid var(--jg-linea);
+	color: var(--jg-tenue);
+}
+
+.sitio-pie__interior {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.8rem 2rem;
+	max-width: var(--jg-ancho);
+	margin: 0 auto;
+	padding: 1.5rem;
+}
+
+.sitio-pie p {
+	margin: 0;
+	font-size: 0.9rem;
+	letter-spacing: 0.04em;
+	color: #A9BCC4;
+}
+
+.sitio-pie ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.2rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sitio-pie a {
+	color: var(--jg-cian);
+}
+
+/* -------------------------------------------------------------------------
+ * 12. Accesibilidad
+ * ---------------------------------------------------------------------- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+	outline: 2px solid var(--jg-cian);
+	outline-offset: 3px;
+}
+
+::selection {
+	background: var(--jg-teal);
+	color: var(--jg-blanco);
+}
+
+/* -------------------------------------------------------------------------
+ * 13. Pantallas chicas
+ * ---------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+	.sitio-header__interior {
+		flex-wrap: wrap;
+	}
+
+	.menu-boton {
+		display: inline-block;
+	}
+
+	.menu {
+		display: none;
+		flex-basis: 100%;
+	}
+
+	.menu.abierto {
+		display: block;
+	}
+
+	.menu ul {
+		flex-direction: column;
+		gap: 0;
+		padding-bottom: 0.4rem;
+	}
+
+	.menu a::after {
+		left: 0.9rem;
+		right: auto;
+		width: 2.5rem;
+		bottom: 0.3rem;
+	}
+}
+
+@media (max-width: 600px) {
+	.jg-hero {
+		padding-bottom: 3rem;
+	}
+
+	.jg-acciones .jg-boton {
+		width: 100%;
+		text-align: center;
+	}
+
+	.jg-torneo {
+		flex-direction: column;
+		gap: 0.9rem;
+	}
+
+	.jg-torneo__fecha {
+		flex: 0 0 auto;
+		width: 4.2rem;
+		height: 4.2rem;
+	}
+
+	.jg-nivel {
+		padding: 1.1rem 1rem;
+	}
+}
+
+/* Quien pidió menos movimiento, menos movimiento tiene. */
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+	}
+
+	.jg-juego:hover,
+	.jg-card:hover,
+	.jg-boton:hover {
+		transform: none;
+	}
+}
