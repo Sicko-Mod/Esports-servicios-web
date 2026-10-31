@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
@@ -26,7 +27,7 @@ class Juego extends Model
     ];
 
     protected $fillable = [
-        'nombre', 'slug', 'descripcion', 'dia', 'hora', 'lugar', 'capitan', 'activo', 'orden',
+        'nombre', 'slug', 'descripcion', 'dia', 'hora', 'lugar', 'capitan', 'capitan_user_id', 'activo', 'orden',
     ];
 
     protected function casts(): array
@@ -37,9 +38,24 @@ class Juego extends Model
         ];
     }
 
+    public function capitanUser(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'capitan_user_id');
+    }
+
     public function integrantes(): HasMany
     {
         return $this->hasMany(Integrante::class)->orderBy('gamer_tag');
+    }
+
+    public function miembros(): HasMany
+    {
+        return $this->hasMany(Miembro::class);
+    }
+
+    public function sesiones(): HasMany
+    {
+        return $this->hasMany(Sesion::class);
     }
 
     public function torneos(): HasMany

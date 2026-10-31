@@ -22,6 +22,7 @@
             ['Convalidación', 'convalidacion', 'convalidacion'],
             ['Cómo unirse', 'como-unirse', 'como-unirse'],
             ['Contacto', 'contacto', 'contacto'],
+            ['Miembros', 'portal.login', 'portal.*'],
         ];
     @endphp
 

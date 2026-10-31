@@ -1,0 +1,224 @@
+/**
+ * Panel de administración — reutiliza tokens de jaguares.css
+ */
+
+.admin-body {
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: 14rem 1fr;
+	background: var(--jg-negro, #090c0f);
+	color: var(--jg-texto, #e9f1f3);
+	font-family: var(--jg-texto-ff, system-ui, sans-serif);
+}
+
+.admin-nav {
+	padding: 1.25rem 1rem;
+	background: var(--jg-carbon, #10161b);
+	border-right: 1px solid var(--jg-linea, rgba(0, 188, 212, 0.16));
+}
+
+.admin-nav__marca {
+	display: block;
+	font-family: var(--jg-display, sans-serif);
+	font-weight: 700;
+	font-size: 1.1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--jg-cian, #00bcd4);
+	text-decoration: none;
+	margin-bottom: 1.5rem;
+}
+
+.admin-nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.admin-nav a {
+	display: block;
+	padding: 0.5rem 0.65rem;
+	border-radius: 0.35rem;
+	color: var(--jg-texto);
+	text-decoration: none;
+	font-size: 0.95rem;
+}
+
+.admin-nav a:hover,
+.admin-nav a.activo {
+	background: var(--jg-panel, #151e24);
+	color: var(--jg-cian);
+}
+
+.admin-nav__pie {
+	margin-top: 2rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--jg-linea);
+	font-size: 0.85rem;
+}
+
+.admin-nav__pie a {
+	color: var(--jg-tenue, #90a4ae);
+}
+
+.admin-main {
+	padding: 1.5rem 2rem 3rem;
+	max-width: 56rem;
+}
+
+.admin-titulo {
+	font-family: var(--jg-display, sans-serif);
+	font-size: 1.75rem;
+	margin: 0 0 1rem;
+}
+
+.admin-acciones {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
+	margin-bottom: 1.25rem;
+}
+
+.admin-alerta {
+	padding: 0.75rem 1rem;
+	border-radius: 0.35rem;
+	margin-bottom: 1rem;
+	background: rgba(0, 188, 212, 0.12);
+	border: 1px solid var(--jg-linea-viva);
+}
+
+.admin-errores {
+	padding: 0.75rem 1rem;
+	border-radius: 0.35rem;
+	margin-bottom: 1rem;
+	background: rgba(220, 53, 69, 0.15);
+	border: 1px solid rgba(220, 53, 69, 0.5);
+}
+
+.admin-errores ul {
+	margin: 0.25rem 0 0;
+	padding-left: 1.25rem;
+}
+
+.admin-tabla {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.95rem;
+}
+
+.admin-tabla th,
+.admin-tabla td {
+	padding: 0.6rem 0.5rem;
+	border-bottom: 1px solid var(--jg-linea);
+	text-align: left;
+	vertical-align: top;
+}
+
+.admin-tabla th {
+	color: var(--jg-tenue);
+	font-weight: 500;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.admin-form label {
+	display: block;
+	margin-bottom: 1rem;
+	font-size: 0.95rem;
+}
+
+.admin-form label span {
+	display: block;
+	margin-bottom: 0.35rem;
+	color: var(--jg-tenue);
+	font-size: 0.85rem;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="email"],
+.admin-form input[type="password"],
+.admin-form input[type="url"],
+.admin-form input[type="date"],
+.admin-form input[type="time"],
+.admin-form input[type="number"],
+.admin-form select,
+.admin-form textarea {
+	width: 100%;
+	max-width: 32rem;
+	padding: 0.5rem 0.65rem;
+	border-radius: 0.35rem;
+	border: 1px solid var(--jg-linea);
+	background: var(--jg-panel);
+	color: var(--jg-texto);
+	font: inherit;
+}
+
+.admin-form textarea {
+	min-height: 6rem;
+	resize: vertical;
+}
+
+.admin-form__fila {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.admin-form__fila input {
+	width: auto;
+}
+
+.admin-btn {
+	display: inline-block;
+	padding: 0.45rem 0.9rem;
+	border-radius: 0.35rem;
+	border: 1px solid var(--jg-linea-viva);
+	background: var(--jg-profundo, #0b545b);
+	color: var(--jg-blanco, #fff);
+	text-decoration: none;
+	font: inherit;
+	cursor: pointer;
+}
+
+.admin-btn--secundario {
+	background: transparent;
+	color: var(--jg-cian);
+}
+
+.admin-btn--peligro {
+	border-color: rgba(220, 53, 69, 0.6);
+	background: rgba(220, 53, 69, 0.25);
+}
+
+.admin-inline {
+	display: inline-flex;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.admin-login {
+	max-width: 22rem;
+	margin: 4rem auto;
+	padding: 2rem;
+	background: var(--jg-panel);
+	border-radius: 0.5rem;
+	border: 1px solid var(--jg-linea);
+}
+
+@media (max-width: 720px) {
+	.admin-body {
+		grid-template-columns: 1fr;
+	}
+
+	.admin-nav {
+		border-right: none;
+		border-bottom: 1px solid var(--jg-linea);
+	}
+
+	.admin-main {
+		padding: 1rem;
+	}
+}
