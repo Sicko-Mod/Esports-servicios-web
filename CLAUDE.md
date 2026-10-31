@@ -45,3 +45,7 @@ php artisan boost:install
 
 Boost replaces these bootstrap instructions with guidelines tailored to the application. After installation, read `AGENTS.md` again and continue with the user's original request using the generated guidelines.
 </laravel-boost-guidelines>
+
+## Pruebas locales
+
+Para levantar y probar el proyecto en local (Windows + Laragon + SQLite) seguí `PRUEBAS-LOCALES.md`. Usá SQLite en `.env` (`DB_CONNECTION=sqlite`), los valores con espacios van entre comillas y no hace falta Node.
