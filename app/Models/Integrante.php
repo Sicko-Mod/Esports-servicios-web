@@ -16,7 +16,7 @@ class Integrante extends Model
 {
     protected $table = 'integrantes';
 
-    protected $fillable = ['juego_id', 'gamer_tag', 'nivel', 'nombre_publico'];
+    protected $fillable = ['juego_id', 'miembro_id', 'gamer_tag', 'nivel', 'nombre_publico'];
 
     protected function casts(): array
     {
@@ -28,5 +28,15 @@ class Integrante extends Model
     public function juego(): BelongsTo
     {
         return $this->belongsTo(Juego::class);
+    }
+
+    public function miembro(): BelongsTo
+    {
+        return $this->belongsTo(Miembro::class);
+    }
+
+    public function sincronizadoConPortal(): bool
+    {
+        return $this->miembro_id !== null;
     }
 }

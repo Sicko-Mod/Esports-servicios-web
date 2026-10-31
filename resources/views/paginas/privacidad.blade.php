@@ -3,25 +3,20 @@
 @section('titulo', 'Política de privacidad')
 
 @section('contenido')
-    <p>Esta página explica qué información maneja el sitio web de Jaguares E-Sports, el club de deportes electrónicos de la Universidad Americana.</p>
+    <p>Esta política describe qué datos recopila el sitio web del Club de Deportes Electrónicos de la UAM y cómo se usan.</p>
 
-    <h2>Qué se publica en este sitio</h2>
-    <ul>
-        <li>Gamer tag de los integrantes del club y el juego al que pertenecen.</li>
-        <li>Nombre real, únicamente cuando la persona dio permiso expreso y es mayor de edad.</li>
-        <li>Capitanes, horarios de reunión y lugar de encuentro de cada grupo.</li>
-        <li>Torneos: nombre, fechas, modalidad y enlace de inscripción.</li>
-    </ul>
+    <h2>Sitio público</h2>
+    <p>Las páginas abiertas (inicio, equipos, torneos, convalidación informativa) muestran solo información del club: nombres de grupos, horarios, gamer tags del roster y torneos. No hay formularios que recojan datos personales en estas páginas.</p>
 
-    <h2>Qué no se publica nunca</h2>
-    <p>No se publica ni se almacena en este sitio: número de CIF o carné, teléfono, correo personal, fecha de nacimiento, carrera, ni datos de padres o tutores. El registro de asistencia y la gestión de convalidación de créditos se manejan por fuera de esta página web.</p>
+    <h2>Portal de miembros</h2>
+    <p>En <a href="{{ route('portal.login') }}">/portal</a> los integrantes del club crean cuenta con correo institucional y guardan datos necesarios para asistencia y convalidación (CIF, carrera, teléfono, y datos de tutor si son menores de edad). Esos datos <strong>no</strong> se publican en el sitio abierto.</p>
 
-    <h2>Datos que recoge el sitio por su cuenta</h2>
-    <p>[Completar según lo que se instale: formularios de contacto, estadísticas de visitas, cookies de sesión. Si no hay ninguno, decirlo explícitamente.]</p>
+    <h2>Cookies y sesión</h2>
+    <p>El portal y el panel de administración usan cookies de sesión técnicas para mantener tu inicio de sesión. No usamos cookies de publicidad ni rastreadores de terceros en este sitio.</p>
 
-    <h2>Menores de edad</h2>
-    <p>De los integrantes menores de edad se publica únicamente el gamer tag. Nunca su nombre real ni ningún dato que permita identificarlos.</p>
+    <h2>Panel de administración</h2>
+    <p>Voluntarios autorizados del club acceden a <code>/admin</code> para publicar contenido y gestionar asistencia y convalidaciones. El acceso está restringido por cuenta y contraseña.</p>
 
-    <h2>Bajar tu información</h2>
-    <p>Cualquier integrante puede pedir que se quite su gamer tag o su nombre del sitio, sin dar explicaciones. La solicitud se hace por los medios de la página de contacto y se resuelve en el plazo más corto posible.</p>
+    <h2>Contacto</h2>
+    <p>Para ejercer derechos sobre tus datos o consultas de privacidad, usá los canales del club en la página de <a href="{{ route('contacto') }}">contacto</a>.</p>
 @endsection

@@ -28,6 +28,8 @@ class SitioController extends Controller
 
     public function equipo(Juego $juego): View
     {
+        abort_unless($juego->activo, 404);
+
         $juego->load('integrantes');
 
         return view('equipos.show', [

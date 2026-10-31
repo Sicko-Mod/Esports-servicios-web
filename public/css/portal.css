@@ -1,0 +1,188 @@
+.portal-body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background: var(--jg-negro, #090c0f);
+	color: var(--jg-texto, #e9f1f3);
+	font-family: var(--jg-texto-ff, system-ui, sans-serif);
+}
+
+.portal-header {
+	padding: 0.75rem 1rem;
+	border-bottom: 1px solid var(--jg-linea);
+	background: var(--jg-carbon);
+}
+
+.portal-header__interior {
+	max-width: var(--jg-ancho, 68rem);
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem 1.25rem;
+}
+
+.portal-marca {
+	font-family: var(--jg-display, sans-serif);
+	font-weight: 700;
+	text-transform: uppercase;
+	color: var(--jg-cian);
+	text-decoration: none;
+}
+
+.portal-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+	font-size: 0.95rem;
+}
+
+.portal-nav a {
+	color: var(--jg-texto);
+	text-decoration: none;
+}
+
+.portal-nav a.activo {
+	color: var(--jg-cian);
+}
+
+.portal-main {
+	flex: 1;
+	width: 100%;
+	max-width: var(--jg-ancho, 68rem);
+	margin: 0 auto;
+	padding: 1.25rem 1rem 3rem;
+}
+
+.portal-tarjeta {
+	background: var(--jg-panel);
+	border: 1px solid var(--jg-linea);
+	border-radius: 0.5rem;
+	padding: 1.25rem;
+	margin-bottom: 1rem;
+}
+
+.portal-metrica {
+	font-size: 2.5rem;
+	font-family: var(--jg-display, sans-serif);
+	font-weight: 700;
+	color: var(--jg-cian);
+	line-height: 1.1;
+}
+
+.portal-form label {
+	display: block;
+	margin-bottom: 1rem;
+}
+
+.portal-form label span {
+	display: block;
+	font-size: 0.85rem;
+	color: var(--jg-tenue);
+	margin-bottom: 0.35rem;
+}
+
+.portal-form input,
+.portal-form select,
+.portal-form textarea {
+	width: 100%;
+	padding: 0.65rem 0.75rem;
+	font: inherit;
+	border-radius: 0.35rem;
+	border: 1px solid var(--jg-linea);
+	background: var(--jg-carbon);
+	color: var(--jg-texto);
+}
+
+.portal-btn {
+	display: inline-block;
+	padding: 0.65rem 1.1rem;
+	border-radius: 0.35rem;
+	border: none;
+	background: var(--jg-profundo);
+	color: #fff;
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+	text-decoration: none;
+	text-align: center;
+}
+
+.portal-btn--secundario {
+	background: transparent;
+	border: 1px solid var(--jg-linea-viva);
+	color: var(--jg-cian);
+}
+
+.portal-alerta {
+	padding: 0.75rem 1rem;
+	border-radius: 0.35rem;
+	margin-bottom: 1rem;
+	background: rgba(0, 188, 212, 0.12);
+	border: 1px solid var(--jg-linea-viva);
+}
+
+.portal-lista-asistencia {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.portal-lista-asistencia li {
+	margin-bottom: 0.75rem;
+	padding: 0.85rem 1rem;
+	background: var(--jg-panel-alto, #1b262e);
+	border-radius: 0.5rem;
+	border: 1px solid var(--jg-linea);
+}
+
+.portal-lista-asistencia__nombre {
+	font-weight: 600;
+	font-size: 1.05rem;
+	margin-bottom: 0.65rem;
+}
+
+.portal-estados {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.35rem;
+}
+
+.portal-estados label {
+	margin: 0;
+	font-size: 0.8rem;
+	text-align: center;
+	padding: 0.55rem 0.25rem;
+	border-radius: 0.35rem;
+	border: 1px solid var(--jg-linea);
+	cursor: pointer;
+}
+
+.portal-estados input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.portal-estados input:checked + span {
+	display: block;
+}
+
+.portal-estados label:has(input:checked) {
+	border-color: var(--jg-cian);
+	background: rgba(0, 188, 212, 0.15);
+	color: var(--jg-cian);
+	font-weight: 600;
+}
+
+.portal-pie-accion {
+	position: sticky;
+	bottom: 0;
+	padding: 1rem;
+	background: linear-gradient(transparent, var(--jg-negro) 30%);
+}
+
+.portal-auth {
+	max-width: 24rem;
+	margin: 2rem auto;
+}

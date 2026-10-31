@@ -72,6 +72,16 @@ class SitioPublicoTest extends TestCase
         $this->get('/equipos/no-existe')->assertNotFound();
     }
 
+    public function test_las_paginas_muestran_el_dominio_institucional_y_no_la_expresion_blade(): void
+    {
+        foreach (['/portal/login', '/portal/registro', '/convalidacion-de-creditos'] as $ruta) {
+            $this->get($ruta)
+                ->assertOk()
+                ->assertSee('&#64;uamv.edu.ni', false)
+                ->assertDontSee('{{ config', false);
+        }
+    }
+
     public function test_los_torneos_se_separan_en_proximos_e_historial(): void
     {
         Torneo::create(['nombre' => 'Copa Futura', 'fecha_inicio' => now()->addDays(10)]);

@@ -1,58 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Jaguares E-Sports · Plataforma web UAM
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Plataforma oficial del **Club de Deportes Electrónicos** de la **Universidad Americana (UAM)**, Managua. Centraliza la presencia pública del club y, en fases posteriores, la operación interna (asistencia, convalidación de créditos y reportes).
 
-## About Laravel
+Desarrollada por integrantes del club. Cuenta con aval institucional de la UAM.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ¿Para qué sirve?
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Ámbito | Qué hace hoy | Qué viene después |
+|--------|----------------|-------------------|
+| **Sitio público** | Información del club, grupos activos, rosters por tier, torneos, guías de convalidación y contacto | Textos institucionales finales, logo, reglamento enlazado |
+| **Panel `/admin`** | CRUD de grupos, integrantes del roster y torneos (sin tocar la base a mano) | Más roles y permisos cuando exista el módulo de miembros |
+| **Portal `/portal`** | Registro, perfil, asistencia, **solicitud de convalidación** | Verificación de correo institucional (futuro) |
+| **Admin convalidaciones** | Revisión de solicitudes y **export CSV** (CIF, sin nombres) | Ajuste de formato con Registro Académico |
 
-## Learning Laravel
+**Transición importante:** el libro de Excel *Asistencia_Anual_ESports_UAM.xlsx* sigue siendo la fuente oficial hasta que la plataforma complete **un semestre entero en paralelo** con resultados concordantes.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Qué ve un visitante
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- **Inicio** — Resumen del club y grupos activos del semestre.
+- **Equipos** — Horario, lugar, capitán y roster público (solo *gamer tags* y niveles Tier 1 / Tier 2 / Miembros).
+- **Torneos** — Próximos eventos e historial reciente.
+- **Convalidación de créditos** — Reglas en lenguaje claro (80 % de asistencia ≈ 25 h laborales por semestre, según `config/club.php`).
+- **Cómo unirse**, **Contacto** y **Política de privacidad**.
 
-## Agentic Development
+El sitio público **no** pide login ni guarda datos sensibles (CIF, teléfonos, tutores, etc.). Eso quedará en el módulo de miembros cuando esté construido.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
-```bash
-composer require laravel/boost --dev
+## Arquitectura en una línea
 
-php artisan boost:install
+```
+Visitante  →  Sitio público (Blade)     →  juegos, integrantes, torneos
+Editor     →  /admin (rol admin)        →  mismo contenido, vía panel
+Futuro     →  Portal de miembros         →  asistencia y convalidaciones
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Stack: **PHP 8.3+**, **Laravel 13**, **Blade**, CSS propio (`public/css/jaguares.css`). Pruebas con SQLite en memoria; en **Hostinger** usá **MySQL** (ver [HOSTINGER.md](HOSTINGER.md)).
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Inicio rápido
 
-## Code of Conduct
+Requisitos: PHP, Composer, Node (solo si compilás assets con Vite), base de datos configurada en `.env`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+cp .env.example .env   # en Windows: copy .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+php artisan serve
+```
 
-## Security Vulnerabilities
+1. Copiá `.env.example` a `.env` y configurá la base de datos.
+2. Definí `ADMIN_EMAIL` y `ADMIN_PASSWORD` para crear la cuenta del panel al hacer `db:seed`.
+3. Abrí el sitio en la URL de tu entorno (por ejemplo `http://asistencia-jaguares.test` en Laragon).
+4. **Sitio público** en `/` · **Panel de contenido** en `/admin` · **Portal de miembros** en `/portal`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Instrucciones detalladas, variables del club y datos de demo: **[INSTALAR.md](INSTALAR.md)**. Despliegue en producción (Hostinger): **[HOSTINGER.md](HOSTINGER.md)** (incluye flujo **local + Hostinger**: Laragon para cambios y pruebas, hosting para el sitio en vivo).
 
-## License
+```bash
+php artisan test
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Estructura del código (lo esencial)
+
+| Pieza | Ubicación |
+|-------|-----------|
+| Rutas públicas | `routes/web.php` → `SitioController` |
+| Rutas del panel | `routes/admin.php` → prefijo `/admin` |
+| Modelos del sitio | `Juego`, `Integrante`, `Torneo`, enum `Nivel` |
+| Configuración del club | `config/club.php` |
+| Vistas públicas | `resources/views/inicio`, `equipos`, `torneos`, `paginas/*` |
+| Vistas del panel | `resources/views/admin/*` |
+| Estilos | `public/css/jaguares.css`, `public/css/admin.css` |
+
+Migración desde WordPress: el sitio que antes vivía en **WordPress + Astra** pasó a esta app Laravel; las equivalencias de tipos de contenido están en `INSTALAR.md`.
+
+---
+
+## Roadmap (resumen)
+
+1. **Bloque A** — Asistencia: registro institucional, perfiles, grupos con capitanes, toma de lista móvil.
+2. **Bloque B** — Convalidaciones y exportes (**implementado**; validar CSV con Registro).
+3. **Bloque C** — Piloto en paralelo con el Excel; retiro formal del workbook si los números coinciden al cierre del semestre.
+
+No invertir el orden: consolidar asistencia en producción antes de convalidaciones y reportes.
+
+---
+
+## Seguridad y datos
+
+- Identidad de miembros (futuro): correo **`@uamv.edu.ni`**.
+- Roster público: solo información que el club ya mostraba en la web (tags y tiers).
+- Panel: usuarios con rol `admin` o `superadmin`. Solo un superadmin asigna roles en `/admin/usuarios`, y el panel avisa mientras no haya dos (con años de graduación distintos).
+
+Si encontrás un problema de seguridad en este repositorio, reportalo al equipo del club por los canales institucionales acordados (no uses el correo genérico de Laravel).
+
+---
+
+## Licencia
+
+Código de aplicación bajo licencia MIT salvo que el club defina otra política para el repositorio. Laravel es software open source con licencia MIT.
