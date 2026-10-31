@@ -45,6 +45,8 @@ Stack: **PHP 8.3+**, **Laravel 13**, **Blade**, CSS propio (`public/css/jaguares
 
 ## Inicio rápido
 
+> **¿Probando en Windows con Laragon?** Seguí la guía paso a paso: **[PRUEBAS-LOCALES.md](PRUEBAS-LOCALES.md)**.
+
 Requisitos: PHP, Composer, Node (solo si compilás assets con Vite), base de datos configurada en `.env`.
 
 ```bash
